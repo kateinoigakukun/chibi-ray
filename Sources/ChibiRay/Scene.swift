@@ -179,13 +179,18 @@ public struct Scene {
     }
 
     func trace(ray: Ray) -> Intersection? {
-        let intersections = self.elements.enumerated().compactMap { index, element in
-            element.intersect(ray: ray).map {
-                Intersection(distance: $0, elementIndex: index)
+        var closestIntersection: Intersection?
+        for (index, element) in self.elements.enumerated() {
+            guard let distance = element.intersect(ray: ray) else { continue }
+            let intersection = Intersection(distance: distance, elementIndex: index)
+            if let existing = closestIntersection {
+                if intersection.distance < existing.distance {
+                    closestIntersection = intersection
+                }
+            } else {
+                closestIntersection = intersection
             }
         }
-        return intersections.min {
-            $0.distance < $1.distance
-        }
+        return closestIntersection
     }
 }
