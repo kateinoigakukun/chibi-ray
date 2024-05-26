@@ -6,11 +6,11 @@ import Glibc
 import WASILibc
 #endif
 
-struct Ray {
+public struct Ray {
     var origin: Point
     var direction: Vector3
 
-    static func createPrime(x: Int, y: Int, scene: borrowing Scene) -> Ray {
+    public static func createPrime(x: Int, y: Int, scene: borrowing Scene) -> Ray {
         let fovAdjustment = tan((scene.fov * .pi / 180.0) / 2.0)
         let aspectRatio = Double(scene.width) / Double(scene.height)
         let sensorX = (((Double(x) + 0.5) / Double(scene.width)) * 2.0 - 1.0) * aspectRatio * fovAdjustment
@@ -245,7 +245,7 @@ func fresnel(incident: Vector3, normal: Vector3, index: Float) -> Double {
     return (rs * rs + rp * rp) / 2.0
 }
 
-func castRay(scene: borrowing Scene, ray: Ray, depth: Int) -> Color {
+public func castRay(scene: borrowing Scene, ray: Ray, depth: Int) -> Color {
     guard depth < scene.maxRecursionDepth else { return .black }
     guard let intersection = scene.trace(ray: ray) else { return .black }
     return getColor(scene: scene, ray: ray, intersection: intersection, depth: depth)
