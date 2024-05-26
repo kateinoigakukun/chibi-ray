@@ -1,4 +1,4 @@
-public struct ImageBuffer: ~Copyable {
+public struct ImageBuffer {
     public let width, height: Int
     public private(set) var data: [Color]
 
