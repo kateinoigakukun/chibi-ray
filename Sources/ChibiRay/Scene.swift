@@ -155,14 +155,14 @@ public enum Light {
 }
 
 public struct Scene {
-    var width: Int
-    var height: Int
-    var fov: Double
-    var elements: [Element]
-    var lights: [Light]
+    public var width: Int
+    public var height: Int
+    public var fov: Double
+    public var elements: [Element]
+    public var lights: [Light]
 
-    var shadowBias: Double
-    var maxRecursionDepth: Int
+    public var shadowBias: Double
+    public var maxRecursionDepth: Int
 
     public init(
         width: Int, height: Int, fov: Double, elements: [Element],

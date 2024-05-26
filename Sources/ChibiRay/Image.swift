@@ -8,7 +8,7 @@ public struct ImageBuffer: ~Copyable {
         self.data = [Color].init(repeating: .black, count: width * height)
     }
 
-    subscript(x: Int, y: Int) -> Color {
+    public subscript(x: Int, y: Int) -> Color {
         get {
             self.data[self.width * y + x]
         }
